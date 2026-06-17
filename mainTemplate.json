@@ -271,27 +271,27 @@
                 }
             }
         },
-        {
-            "name": "SettingUpAvailabilitySet",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('availabilitySetNewOrExisting'), 'new')]",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('availabilitySetTemplate')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "availabilitySetName": {
-                        "value": "[parameters('availabilitySetName')]"
-                    },
-                    "location": {
-                        "value": "[parameters('location')]"
-                    }
-                }
-            }
-        },
+        //{
+        //    "name": "SettingUpAvailabilitySet",
+        //    "type": "Microsoft.Resources/deployments",
+        //    "apiVersion": "2019-05-01",
+        //    "condition": "[equals(parameters('availabilitySetNewOrExisting'), 'new')]",
+        //    "properties": {
+        //        "mode": "Incremental",
+        //        "templateLink": {
+        //            "uri": "[variables('availabilitySetTemplate')]",
+        //            "contentVersion": "1.0.0.0"
+        //        },
+        //        "parameters": {
+        //            "availabilitySetName": {
+        //                "value": "[parameters('availabilitySetName')]"
+        //            },
+        //            "location": {
+        //                "value": "[parameters('location')]"
+        //            }
+        //        }
+        //    }
+        //},
         {
             "name": "SettingUpStorageAccount",
             "type": "Microsoft.Resources/deployments",
