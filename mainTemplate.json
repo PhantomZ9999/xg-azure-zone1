@@ -249,7 +249,7 @@
         "publicIpTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/publicip-new.json', parameters('_artifactsLocationSasToken')))]",
         "netTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/vnet-new.json', parameters('_artifactsLocationSasToken')))]",
         "storageTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/storageAccount-new.json', parameters('_artifactsLocationSasToken')))]",
-      //  "availabilitySetTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/availabilitySet-new.json', parameters('_artifactsLocationSasToken')))]",
+        "availabilitySetTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/availabilitySet-new.json', parameters('_artifactsLocationSasToken')))]",
         "networkSecurityGroupTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/networkSecurityGroup-new.json', parameters('_artifactsLocationSasToken')))]",
         "interfaceWanTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/interface-wan.json', parameters('_artifactsLocationSasToken')))]",
         "interfaceLanTemplate": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/interface-lan.json', parameters('_artifactsLocationSasToken')))]",
@@ -271,27 +271,27 @@
                 }
             }
         },
-        //{
-        //    "name": "SettingUpAvailabilitySet",
-        //    "type": "Microsoft.Resources/deployments",
-        //    "apiVersion": "2019-05-01",
-        //    "condition": "[equals(parameters('availabilitySetNewOrExisting'), 'new')]",
-        //    "properties": {
-        //        "mode": "Incremental",
-        //        "templateLink": {
-        //            "uri": "[variables('availabilitySetTemplate')]",
-        //            "contentVersion": "1.0.0.0"
-        //        },
-        //        "parameters": {
-        //            "availabilitySetName": {
-        //                "value": "[parameters('availabilitySetName')]"
-        //            },
-        //            "location": {
-        //                "value": "[parameters('location')]"
-        //            }
-        //        }
-        //    }
-        //},
+        {
+            "name": "SettingUpAvailabilitySet",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "condition": "[equals(parameters('availabilitySetNewOrExisting'), 'new')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('availabilitySetTemplate')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "availabilitySetName": {
+                        "value": "[parameters('availabilitySetName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
+                }
+            }
+        },
         {
             "name": "SettingUpStorageAccount",
             "type": "Microsoft.Resources/deployments",
@@ -495,9 +495,9 @@
                     "imageSku": {
                         "value": "[parameters('imageSku')]"
                     },
-                   // "availabilitySetId": {
-                   //     "value": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
-                   // },
+                    "availabilitySetId": {
+                        "value": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
+                    },
                     "storageAccountEndpoint": {
                         "value": "[if(equals(parameters('storageNewOrExisting'), 'new'), reference('SettingUpStorageAccount').outputs.storageAccountEndpoint.value, reference(variables('storageAccountId'), '2019-06-01').primaryEndpoints.blob)]"
                     },
