@@ -40,6 +40,7 @@
             "apiVersion": "2024-03-01",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
+            "zones": ["1"],  //Specify the availability zone to deploy
             "plan": {
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]",
