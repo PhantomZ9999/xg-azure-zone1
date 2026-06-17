@@ -16,7 +16,7 @@ Deployment via template
 
 1) Press the appropriate deployment button and enter your Azure credentials when prompted.
 
-[![Deploy to Azure]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FPhantomZ9999%2Fxg-azure-zone1%2Fmaster%2FmainTemplate.json)
+[[Deploy to Azure]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FPhantomZ9999%2Fxg-azure-zone1%2Fmaster%2FmainTemplate.json)
 
 2) Take a look on the example values for template parameters in `mainTemplateParameters.json`.
 
